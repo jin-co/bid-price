@@ -1,0 +1,101 @@
+<div class="container p-3">
+  <h2 class="mt-5 mb-3">취득세</h2>
+  <form [formGroup]="form" (submit)="onSubmit()">
+    <div class="d-flex form-control my-3">
+      <label class="col-4" title="생애최초 구입시 2023년 12월 31일까지 취득세 감면혜택">최초구매 여부</label>
+      <div class="form-check col-4">
+        <input formControlName="firstBuy" type="radio" class="btn-check" id="first-yes" [value]="true" name="firstBuy">
+        <label class="btn w-100 btn-outline-success" for="first-yes">
+          예
+        </label>
+      </div>
+      <div class="form-check col-4">
+        <input formControlName="firstBuy" type="radio" class="btn-check" id="first-no" [value]="false" name="firstBuy">
+        <label class="btn w-100 btn-outline-danger" for="first-no">
+          아니오
+        </label>
+      </div>
+    </div>
+
+    <div class="d-flex form-control my-3">
+      <label class="col-4" title="전용면적 84제곱미터 초과시 농어촌특별세 과세">전용면적 84m<sup>2</sup> 초과</label>
+      <div class="form-check col-4">
+        <input formControlName="isOver" type="radio" class="btn-check" id="over-yes" [value]="true" name="isOver">
+        <label class="btn w-100 btn-outline-success" for="over-yes">
+          예
+        </label>
+      </div>
+      <div class="form-check col-4">
+        <input formControlName="isOver" type="radio" class="btn-check" id="over-no" [value]="false" name="isOver">
+        <label class="btn w-100 btn-outline-danger" for="over-no">
+          아니오
+        </label>
+      </div>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input class="form-control" id="price" type="number" placeholder="price" formControlName="price"
+        title="취득 당시가액으로 산정하나 해당금액이 시가표준액보더 적은경우 시가표준액 적용">
+      <label for="price">시가표준액 (공시지가)</label>
+    </div>
+    
+    <div class="form-floating mb-3">
+      <input class="form-control" id="liability" type="number" placeholder="liability" formControlName="liability"
+        title="인수비용">
+      <label for="liability">인수비용</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input class="form-control" id="address" type="number" placeholder="address" formControlName="address">
+      <label for="address">경매목적물 주소</label>
+    </div>
+
+    <div class="mb-3">
+      <select class="form-select" formControlName="multiHomeOrCorporate">
+        <option [ngValue]="0">보유주택 수 (법인여부)</option>
+        <option [ngValue]="1">1 주택</option>
+        <option [ngValue]="2">2 주택</option>
+        <option [ngValue]="3">3 주택</option>
+        <option [ngValue]="4">4 주택 이상 또는 법인</option>
+      </select>
+    </div>
+
+    <button class="btn w-100 btn-secondary my-2">계산하기</button>
+  </form>
+
+  <!-- result -->
+  <div class="card text-left bg-primary text-white">
+    <div class="card-body">
+      <h5 class="card-title">입찰가격</h5>
+      <hr>
+      <div class="d-flex text-center">
+        <p class="card-text col-6">조정지역여부</p>
+        <p class="card-text col-6">{{isRegulatedArea? '예' : '아니오'}}</p>
+      </div>
+      <div class="d-flex text-center">
+        <p class="card-text col-4">취득세</p>
+        <p class="card-text col-4">세율: {{acquisitionTaxRate | percent:'1.0-6'}}</p>
+        <p class="card-text col-4">{{acquisitionTax | currency:'KRW'}}</p>
+      </div>
+      <div class="d-flex text-center">
+        <p class="card-text col-4">지방교육세</p>
+        <p class="card-text col-4">세율: {{municipalEduTaxRate | percent:'1.0-6'}}</p>
+        <p class="card-text col-4">{{municipalEduTax | currency:'KRW'}}</p>
+      </div>
+      <div class="d-flex text-center">
+        <p class="card-text col-4">농어촌특별세</p>
+        <p class="card-text col-4">세율: {{ruralTaxRate | percent:'1.0-6'}}</p>
+        <p class="card-text col-4">{{ruralTax | currency:'KRW'}}</p>
+      </div>
+      <div class="d-flex text-center">
+        <p class="card-text col-4">세금합계</p>
+        <p class="card-text col-8">{{estimatedTaxTotal | currency:'KRW'}}</p>
+      </div>
+      <div class="d-flex text-center">
+        <p class="card-text col-4">예상비용</p>
+        <p class="card-text col-8">{{estimatedTotal | currency:'KRW'}}</p>
+      </div>
+      <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+</div>
