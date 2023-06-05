@@ -34,18 +34,17 @@
     </div>
 
     <div class="form-floating mb-3">
-      <input class="form-control" id="price" type="any" placeholder="price" formControlName="price"
-        title="취득 당시가액으로 산정하나 해당금액이 시가표준액보더 적은경우 시가표준액 적용" [value]="form.get('price')?.value | currency">
+      <input class="form-control" id="price" type="string" placeholder="price" formControlName="price"
+        title="취득 당시가액으로 산정하나 해당금액이 시가표준액보더 적은경우 시가표준액 적용" (input)="onPriceChange($event)" [value]="test">
       <label for="price">시가표준액 (공시지가)</label>
-      <p class="form-control" formControlName="price"
-        title="취득 당시가액으로 산정하나 해당금액이 시가표준액보더 적은경우 시가표준액 적용" >      {{form.get('price')?.value | currency}}</p>
+      <!-- <p class="form-control"> {{form.get('price')?.value | currency}}</p> -->
     </div>
-    
+
     <div class="form-floating mb-3">
       <input class="form-control" id="bid" type="number" placeholder="bid" formControlName="bid">
       <label for="bid">입찰가격</label>
     </div>
-    
+
     <div class="form-floating mb-3">
       <input class="form-control" id="liability" type="number" placeholder="liability" formControlName="liability"
         title="인수금액">

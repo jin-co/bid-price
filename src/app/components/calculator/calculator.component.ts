@@ -1,3 +1,4 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
 
@@ -24,7 +25,7 @@ export class CalculatorComponent implements OnInit {
     
   estimatedTaxTotal: number = 0;
   estimatedTotal: number = 0;
-
+test!:string
   form!: FormGroup;
   constructor() {
     this.form = new FormGroup({
@@ -99,5 +100,10 @@ export class CalculatorComponent implements OnInit {
       console.log(this.ruralTaxRates[0]);
     }
     this.ruralTax = this.form.value.price * this.ruralTaxRate;
+  }
+
+  onPriceChange(e:Event) {
+    const val = (e.target as HTMLInputElement).value
+      
   }
 }
