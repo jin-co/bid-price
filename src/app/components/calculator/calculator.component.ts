@@ -8,13 +8,12 @@ import { FormControl, FormGroup, NgForm } from '@angular/forms';
   styleUrls: ['./calculator.component.css'],
 })
 export class CalculatorComponent implements OnInit {
-  acquisitionTaxRates: number[] = [
-    0.01, 0.03,
-  ];
+  acquisitionTaxRates: number[] = [0.01, 0.03];
   municipalEduTaxRates: number[] = [0.001, 0.003, 0.004];
   ruralTaxRates: number[] = [0.002, 0.006, 0.008];
 
   isRegulatedArea: boolean = false;
+  isWeightedTax: boolean = false;
 
   acquisitionTaxRate: number = 0;
   municipalEduTaxRate: number = 0;
@@ -22,10 +21,10 @@ export class CalculatorComponent implements OnInit {
   acquisitionTax: number = 0;
   municipalEduTax: number = 0;
   ruralTax: number = 0;
-    
+
   estimatedTaxTotal: number = 0;
   estimatedTotal: number = 0;
-test!:string
+  test!: string;
   form!: FormGroup;
   constructor() {
     this.form = new FormGroup({
@@ -56,13 +55,42 @@ test!:string
   }
 
   calculateAcquisitionTax() {
-    if (this.form.value.price < 600000000) {
+    if (this.form.value.price <= 100000000) {
+      this.isWeightedTax = false;
       this.acquisitionTaxRate = this.acquisitionTaxRates[0];
-    } else if (this.form.value.price <= 900000000) {
-      this.acquisitionTaxRate = +((this.form.value.price * (2 / 300000000) - 3) * (1 / 100)).toFixed(4)      
     } else {
-      this.acquisitionTaxRate = this.acquisitionTaxRates[1];
+      if (this.form.value.multiHomeOrCorporate <= 1) {
+        this.isWeightedTax = false;
+        if (this.form.value.price < 600000000) {
+          this.acquisitionTaxRate = this.acquisitionTaxRates[0];
+        } else if (this.form.value.price <= 900000000) {
+          this.acquisitionTaxRate = +(
+            (this.form.value.price * (2 / 300000000) - 3) *
+            (1 / 100)
+          ).toFixed(4);
+        } else {
+          this.acquisitionTaxRate = this.acquisitionTaxRates[1];
+        }
+      } else if (this.form.value.multiHomeOrCorporate == 2) {
+        this.isWeightedTax = true;
+        if (this.isRegulatedArea) {
+          this.acquisitionTaxRate = 0.08;
+        } else {
+          this.acquisitionTaxRate = 0.03;
+        }
+      } else if (this.form.value.multiHomeOrCorporate == 3) {
+        this.isWeightedTax = true;
+        if (this.isRegulatedArea) {
+          this.acquisitionTaxRate = 0.12;
+        } else {
+          this.acquisitionTaxRate = 0.08;
+        }
+      } else {
+        this.isWeightedTax = true;
+        this.acquisitionTaxRate = 0.12;
+      }
     }
+
     this.acquisitionTax = this.form.value.price * this.acquisitionTaxRate;
 
     if (this.form.value.firstBuy) {
@@ -78,7 +106,10 @@ test!:string
     if (this.form.value.price <= 600000000) {
       this.municipalEduTaxRate = this.municipalEduTaxRates[0];
     } else if (this.form.value.price <= 900000000) {
-      this.municipalEduTaxRate = +((this.form.value.price * (2 / 300000000) - 3) * (1 / 100)).toFixed(4)      
+      this.municipalEduTaxRate = +(
+        (this.form.value.price * (2 / 300000000) - 3) *
+        (1 / 100)
+      ).toFixed(4);
     } else {
       this.municipalEduTaxRate = this.municipalEduTaxRates[1];
     }
@@ -92,7 +123,7 @@ test!:string
     this.ruralTax = this.form.value.price * this.ruralTaxRate;
   }
 
-  onPriceChange(e:Event) {
-    const val = (e.target as HTMLInputElement).value
+  onPriceChange(e: Event) {
+    const val = (e.target as HTMLInputElement).value;
   }
 }
