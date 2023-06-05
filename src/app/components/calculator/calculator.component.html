@@ -34,15 +34,22 @@
     </div>
 
     <div class="form-floating mb-3">
-      <input class="form-control" id="price" type="number" placeholder="price" formControlName="price"
-        title="취득 당시가액으로 산정하나 해당금액이 시가표준액보더 적은경우 시가표준액 적용">
+      <input class="form-control" id="price" type="any" placeholder="price" formControlName="price"
+        title="취득 당시가액으로 산정하나 해당금액이 시가표준액보더 적은경우 시가표준액 적용" [value]="form.get('price')?.value | currency">
       <label for="price">시가표준액 (공시지가)</label>
+      <p class="form-control" formControlName="price"
+        title="취득 당시가액으로 산정하나 해당금액이 시가표준액보더 적은경우 시가표준액 적용" >      {{form.get('price')?.value | currency}}</p>
+    </div>
+    
+    <div class="form-floating mb-3">
+      <input class="form-control" id="bid" type="number" placeholder="bid" formControlName="bid">
+      <label for="bid">입찰가격</label>
     </div>
     
     <div class="form-floating mb-3">
       <input class="form-control" id="liability" type="number" placeholder="liability" formControlName="liability"
-        title="인수비용">
-      <label for="liability">인수비용</label>
+        title="인수금액">
+      <label for="liability">인수금액</label>
     </div>
 
     <div class="form-floating mb-3">
@@ -66,7 +73,7 @@
   <!-- result -->
   <div class="card text-left bg-primary text-white">
     <div class="card-body">
-      <h5 class="card-title">입찰가격</h5>
+      <h5 class="card-title">입찰가</h5>
       <hr>
       <div class="d-flex text-center">
         <p class="card-text col-6">조정지역여부</p>
@@ -90,6 +97,14 @@
       <div class="d-flex text-center">
         <p class="card-text col-4">세금합계</p>
         <p class="card-text col-8">{{estimatedTaxTotal | currency:'KRW'}}</p>
+      </div>
+      <div class="d-flex text-center">
+        <p class="card-text col-4">입찰가</p>
+        <p class="card-text col-8">{{form.get('bid')?.value | currency:'KRW'}}</p>
+      </div>
+      <div class="d-flex text-center">
+        <p class="card-text col-4">인수금액</p>
+        <p class="card-text col-8">{{form.get('liability')?.value | currency:'KRW'}}</p>
       </div>
       <div class="d-flex text-center">
         <p class="card-text col-4">예상비용</p>

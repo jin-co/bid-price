@@ -21,6 +21,7 @@ export class CalculatorComponent implements OnInit {
   acquisitionTax: number = 0;
   municipalEduTax: number = 0;
   ruralTax: number = 0;
+    
   estimatedTaxTotal: number = 0;
   estimatedTotal: number = 0;
 
@@ -30,6 +31,7 @@ export class CalculatorComponent implements OnInit {
       firstBuy: new FormControl(false),
       isOver: new FormControl(false),
       price: new FormControl(null),
+      bid: new FormControl(null),
       liability: new FormControl(null),
       address: new FormControl(''),
       multiHomeOrCorporate: new FormControl(0),
@@ -45,7 +47,7 @@ export class CalculatorComponent implements OnInit {
     this.estimatedTaxTotal =
       this.acquisitionTax + this.municipalEduTax + this.ruralTax;
     this.estimatedTotal =
-      this.form.value.price +
+      this.form.value.bid +
       this.acquisitionTax +
       this.municipalEduTax +
       this.ruralTax +
