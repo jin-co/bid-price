@@ -9,7 +9,7 @@ import { FormControl, FormGroup, NgForm } from '@angular/forms';
 })
 export class CalculatorComponent implements OnInit {
   acquisitionTaxRates: number[] = [
-    0.01, 0.0133, 0.0167, 0.02, 0.0233, 0.0267, 0.03,
+    0.01, 0.03,
   ];
   municipalEduTaxRates: number[] = [0.001, 0.003, 0.004];
   ruralTaxRates: number[] = [0.002, 0.006, 0.008];
@@ -58,18 +58,10 @@ test!:string
   calculateAcquisitionTax() {
     if (this.form.value.price < 600000000) {
       this.acquisitionTaxRate = this.acquisitionTaxRates[0];
-    } else if (this.form.value.price <= 650000000) {
-      this.acquisitionTaxRate = this.acquisitionTaxRates[1];
-    } else if (this.form.value.price <= 700000000) {
-      this.acquisitionTaxRate = this.acquisitionTaxRates[2];
-    } else if (this.form.value.price <= 750000000) {
-      this.acquisitionTaxRate = this.acquisitionTaxRates[3];
-    } else if (this.form.value.price <= 800000000) {
-      this.acquisitionTaxRate = this.acquisitionTaxRates[4];
-    } else if (this.form.value.price <= 850000000) {
-      this.acquisitionTaxRate = this.acquisitionTaxRates[5];
+    } else if (this.form.value.price <= 900000000) {
+      this.acquisitionTaxRate = +((this.form.value.price * (2 / 300000000) - 3) * (1 / 100)).toFixed(4)      
     } else {
-      this.acquisitionTaxRate = this.acquisitionTaxRates[6];
+      this.acquisitionTaxRate = this.acquisitionTaxRates[1];
     }
     this.acquisitionTax = this.form.value.price * this.acquisitionTaxRate;
 
