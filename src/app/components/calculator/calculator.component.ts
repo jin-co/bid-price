@@ -86,7 +86,7 @@ test!:string
     if (this.form.value.price <= 600000000) {
       this.municipalEduTaxRate = this.municipalEduTaxRates[0];
     } else if (this.form.value.price <= 900000000) {
-      this.municipalEduTaxRate = (this.form.value.price * (2 / 300000000) - 3) * (1 / 100)
+      this.municipalEduTaxRate = +((this.form.value.price * (2 / 300000000) - 3) * (1 / 100)).toFixed(4)      
     } else {
       this.municipalEduTaxRate = this.municipalEduTaxRates[1];
     }
@@ -96,14 +96,11 @@ test!:string
   calculateRuralTax() {
     if (this.form.value.isOver) {
       this.ruralTaxRate = this.ruralTaxRates[0];
-      console.log(this.ruralTaxRate);
-      console.log(this.ruralTaxRates[0]);
     }
     this.ruralTax = this.form.value.price * this.ruralTaxRate;
   }
 
   onPriceChange(e:Event) {
     const val = (e.target as HTMLInputElement).value
-      
   }
 }
