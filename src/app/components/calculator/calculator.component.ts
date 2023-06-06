@@ -9,10 +9,10 @@ import { FormControl, FormGroup, NgForm } from '@angular/forms';
 })
 export class CalculatorComponent implements OnInit {
   acquisitionTaxRates: number[] = [0.01, 0.03];
-  municipalEduTaxRates: number[] = [0.001, 0.003, 0.004];
-  ruralTaxRates: number[] = [0.002, 0.006, 0.008];
+  municipalEduTaxRates: number[] = [0.001, 0.004];
+  ruralTaxRates: number[] = [0.002, 0.006, 0.01];
 
-  isRegulatedArea: boolean = false;
+  isRegulatedArea: boolean = true;
   isWeightedTax: boolean = false;
 
   acquisitionTaxRate: number = 0;
@@ -24,6 +24,7 @@ export class CalculatorComponent implements OnInit {
 
   estimatedTaxTotal: number = 0;
   estimatedTotal: number = 0;
+  firstBuyDiscount: number = 0;
   test!: string;
   form!: FormGroup;
   constructor() {
@@ -45,21 +46,38 @@ export class CalculatorComponent implements OnInit {
     this.calculateMunicipalEduTax();
     this.calculateRuralTax();
     this.estimatedTaxTotal =
-      this.acquisitionTax + this.municipalEduTax + this.ruralTax;
+      this.acquisitionTax +
+      this.municipalEduTax +
+      this.ruralTax -
+      this.firstBuyDiscount;
     this.estimatedTotal =
       this.form.value.bid +
       this.acquisitionTax +
       this.municipalEduTax +
       this.ruralTax +
-      this.form.value.liability;
+      this.form.value.liability -
+      this.firstBuyDiscount;
   }
 
   calculateAcquisitionTax() {
+    if (this.form.value.firstBuy) {
+      console.log('first');
+      if (this.form.value.price <= 150000000) {
+        this.acquisitionTax = 0;
+      } else {
+        this.acquisitionTaxRate = this.acquisitionTaxRates[0];
+      }
+      this.acquisitionTax = this.form.value.price * this.acquisitionTaxRate;
+      this.firstBuyDiscount = this.acquisitionTax / 2;
+      this.isWeightedTax = false;
+      return;
+    }
+
     if (this.form.value.price <= 100000000) {
       this.isWeightedTax = false;
       this.acquisitionTaxRate = this.acquisitionTaxRates[0];
-    } else {      
-      if (this.form.value.multiHomeOrCorporate <= 1 || this.form.value.firstBuy) {
+    } else {
+      if (this.form.value.multiHomeOrCorporate <= 1) {
         this.isWeightedTax = false;
         if (this.form.value.price < 600000000) {
           this.acquisitionTaxRate = this.acquisitionTaxRates[0];
@@ -92,23 +110,16 @@ export class CalculatorComponent implements OnInit {
     }
 
     this.acquisitionTax = this.form.value.price * this.acquisitionTaxRate;
-
-    if (this.form.value.firstBuy) {
-      if (this.form.value.price <= 150000000) {
-        this.acquisitionTax = 0;
-      } else {
-        this.acquisitionTax = this.acquisitionTax / 2;
-      }
-    }
   }
 
   calculateMunicipalEduTax() {
-    if (this.form.value.price <= 600000000) {
+    console.log(this.acquisitionTaxRate)
+    if (this.acquisitionTaxRate < 0.03) {
       this.municipalEduTaxRate = this.municipalEduTaxRates[0];
-    } else if (this.form.value.price <= 900000000) {
+    } else if (this.acquisitionTaxRate < 0.08) {
       this.municipalEduTaxRate = +(
-        (this.form.value.price * (2 / 300000000) - 3) *
-        (1 / 100)
+        (this.form.value.price * (2 / 300000000 - 3) * (1 / 100)) /
+        10
       ).toFixed(4);
     } else {
       this.municipalEduTaxRate = this.municipalEduTaxRates[1];
@@ -118,7 +129,13 @@ export class CalculatorComponent implements OnInit {
 
   calculateRuralTax() {
     if (this.form.value.isOver) {
-      this.ruralTaxRate = this.ruralTaxRates[0];
+      if (this.acquisitionTaxRate < 0.08) {
+        this.ruralTaxRate = this.ruralTaxRates[0];
+      } else if (this.acquisitionTaxRate < 0.12) {
+        this.ruralTaxRate = this.ruralTaxRates[1];
+      } else {
+        this.ruralTaxRate = this.ruralTaxRates[2];
+      }
     }
     this.ruralTax = this.form.value.price * this.ruralTaxRate;
   }
@@ -126,6 +143,4 @@ export class CalculatorComponent implements OnInit {
   onPriceChange(e: Event) {
     const val = (e.target as HTMLInputElement).value;
   }
-
-  
 }
