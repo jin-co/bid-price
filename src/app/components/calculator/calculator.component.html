@@ -2,7 +2,7 @@
   <h2 class="mt-5 mb-3">취득세</h2>
   <form [formGroup]="form" (submit)="onSubmit()">
     <div class="d-flex form-control my-3">
-      <label class="col-4" title="생애최초 구입시 2023년 12월 31일까지 취득세 감면혜택">최초구매 여부</label>
+      <label class="col-4" title="생애최초 구입시 2023년 12월 31일까지 취득세 감면혜택 (직전년도 소득이 7천만원 이하인 경우)">최초구매 여부</label>
       <div class="form-check col-4">
         <input formControlName="firstBuy" type="radio" class="btn-check" id="first-yes" [value]="true" name="firstBuy">
         <label class="btn w-100 btn-outline-success" for="first-yes">
@@ -56,8 +56,9 @@
       <label for="address">경매목적물 주소</label>
     </div>
 
-    <div class="mb-3">
-      <select class="form-select" formControlName="multiHomeOrCorporate">
+    <div class="mb-3">      
+      <select class="form-select" formControlName="multiHomeOrCorporate"
+        title="*보유주택 산정 시 시가 1억 이하의 주택은 제외. 단, 입주권, 분양권의 시가와 무관하게 포함(지방령28조4항)">
         <option [ngValue]="0">보유주택 수 (법인여부)</option>
         <option [ngValue]="1">1 주택</option>
         <option [ngValue]="2">2 주택</option>
@@ -65,7 +66,6 @@
         <option [ngValue]="4">4 주택 이상 또는 법인</option>
       </select>
     </div>
-
     <button class="btn w-100 btn-secondary my-2">계산하기</button>
   </form>
 

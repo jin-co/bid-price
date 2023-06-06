@@ -58,8 +58,8 @@ export class CalculatorComponent implements OnInit {
     if (this.form.value.price <= 100000000) {
       this.isWeightedTax = false;
       this.acquisitionTaxRate = this.acquisitionTaxRates[0];
-    } else {
-      if (this.form.value.multiHomeOrCorporate <= 1) {
+    } else {      
+      if (this.form.value.multiHomeOrCorporate <= 1 || this.form.value.firstBuy) {
         this.isWeightedTax = false;
         if (this.form.value.price < 600000000) {
           this.acquisitionTaxRate = this.acquisitionTaxRates[0];
@@ -126,4 +126,6 @@ export class CalculatorComponent implements OnInit {
   onPriceChange(e: Event) {
     const val = (e.target as HTMLInputElement).value;
   }
+
+  
 }
