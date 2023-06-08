@@ -16,7 +16,8 @@ export class HavingTaxComponent implements OnInit {
   standardTaxRates: number[] = [0.001, 0.0015, 0.0025, 0.004];
 
   cityTax: number = 0.0014;
-  municipalEduRate: number = 0.2;
+  municipalEduTaxRate: number = 0.2;
+  municipalEduTax: number = 0;
   fireRate: number[] = [0.0004, 0.012];
 
   form!: FormGroup;
@@ -52,5 +53,7 @@ export class HavingTaxComponent implements OnInit {
     }
     this.standardTax =
       this.standard * this.standardTaxRate - this.doubleTaxSubtraction;
+
+    this.municipalEduTax = this.standardTax * this.municipalEduTaxRate;
   }
 }
