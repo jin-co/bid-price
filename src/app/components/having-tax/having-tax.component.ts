@@ -23,6 +23,7 @@ export class HavingTaxComponent implements OnInit {
   form!: FormGroup;
   constructor() {
     this.form = new FormGroup({
+      soleHouse: new FormControl(null),
       price: new FormControl(null),
       lastTax: new FormControl(null),
     });

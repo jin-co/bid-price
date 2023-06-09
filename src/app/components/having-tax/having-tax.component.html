@@ -1,6 +1,21 @@
 <div class="container p-3">
   <h2 class="mt-5 mb-3">재산세(보유세)</h2>
   <form [formGroup]="form" (submit)="onSubmit()">
+    <div class="d-flex form-control my-3 align-items-center">
+      <label class="col-4">단일 주택자</label>
+      <div class="form-check col-4">
+        <input formControlName="soleHouse" type="radio" class="btn-check" id="sole-yes" [value]="true" name="soleHouse">
+        <label class="btn w-100 btn-outline-success" for="sole-yes">
+          예
+        </label>
+      </div>
+      <div class="form-check col-4">
+        <input formControlName="soleHouse" checked type="radio" class="btn-check" id="sole-no" [value]="false" name="soleHouse">
+        <label class="btn w-100 btn-outline-danger" for="sole-no">
+          아니오
+        </label>
+      </div>
+    </div>
     <div class="form-floating mb-3">
       <input class="form-control" id="price" type="string" placeholder="price" formControlName="price"
         title="취득 당시가액으로 산정하나 해당금액이 시가표준액보더 적은경우 시가표준액 적용">

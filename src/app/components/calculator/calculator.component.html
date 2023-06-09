@@ -1,7 +1,7 @@
 <div class="container p-3">
   <h2 class="mt-5 mb-3">취득세</h2>
   <form [formGroup]="form" (submit)="onSubmit()">
-    <div class="d-flex form-control my-3">
+    <div class="d-flex form-control my-3 align-items-center">
       <label class="col-4" title="생애최초 구입시 2023년 12월 31일까지 취득세 감면혜택 (직전년도 소득이 7천만원 이하인 경우)">최초구매 여부</label>
       <div class="form-check col-4">
         <input formControlName="firstBuy" type="radio" class="btn-check" id="first-yes" [value]="true" name="firstBuy">
@@ -17,7 +17,7 @@
       </div>
     </div>
 
-    <div class="d-flex form-control my-3">
+    <div class="d-flex form-control my-3 align-items-center">
       <label class="col-4" title="전용면적 84제곱미터 초과시 농어촌특별세 과세">전용면적 84m<sup>2</sup> 초과</label>
       <div class="form-check col-4">
         <input formControlName="isOver" type="radio" class="btn-check" id="over-yes" [value]="true" name="isOver">
@@ -56,7 +56,7 @@
       <label for="address">경매목적물 주소</label>
     </div>
 
-    <div class="mb-3">      
+    <div class="mb-3">
       <select class="form-select" formControlName="multiHomeOrCorporate"
         title="*보유주택 산정 시 시가 1억 이하의 주택은 제외. 단, 입주권, 분양권의 시가와 무관하게 포함(지방령28조4항)">
         <option [ngValue]="0">구매 후 보유주택 수 (법인여부)</option>
@@ -88,7 +88,7 @@
         <p class="card-text col-4">{{acquisitionTax | currency:'KRW'}}</p>
       </div>
       <div class="d-flex text-center">
-        <p class="card-text col-4">생애최초구매 감면</p>        
+        <p class="card-text col-4">생애최초구매 감면</p>
         <p class="card-text col-8">{{firstBuyDiscount | currency:'KRW'}}</p>
       </div>
       <div class="d-flex text-center">
@@ -116,7 +116,7 @@
       <div class="d-flex text-center">
         <p class="card-text col-4">예상비용</p>
         <p class="card-text col-8">{{estimatedTotal | currency:'KRW'}}</p>
-      </div>      
+      </div>
     </div>
   </div>
 </div>
