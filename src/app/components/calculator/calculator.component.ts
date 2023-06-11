@@ -43,7 +43,7 @@ export class CalculatorComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    this.isRegulatedArea = this.form.value.isRegulatedArea
+    this.isRegulatedArea = this.form.value.isRegulatedArea;
     this.calculateAcquisitionTax();
     this.calculateMunicipalEduTax();
     this.calculateRuralTax();
@@ -62,7 +62,7 @@ export class CalculatorComponent implements OnInit {
   }
 
   calculateAcquisitionTax() {
-    if (this.form.value.firstBuy) {      
+    if (this.form.value.firstBuy) {
       if (this.form.value.price <= 150000000) {
         this.acquisitionTax = 0;
       } else {
@@ -114,8 +114,7 @@ export class CalculatorComponent implements OnInit {
   }
 
   calculateMunicipalEduTax() {
-    console.log(this.acquisitionTaxRate)
-    if (this.acquisitionTaxRate < 0.03) {
+    if (this.acquisitionTaxRate <= 0.03) {
       this.municipalEduTaxRate = this.municipalEduTaxRates[0];
     } else if (this.acquisitionTaxRate < 0.08) {
       this.municipalEduTaxRate = +(
