@@ -33,6 +33,22 @@
       </div>
     </div>
 
+    <div class="d-flex form-control my-3 align-items-center">
+      <label class="col-4">조정지역여부</label>
+      <div class="form-check col-4">
+        <input formControlName="isRegulatedArea" type="radio" class="btn-check" id="regulated-yes" [value]="true" name="isRegulatedArea">
+        <label class="btn w-100 btn-outline-success" for="regulated-yes">
+          예
+        </label>
+      </div>
+      <div class="form-check col-4">
+        <input formControlName="isRegulatedArea" type="radio" class="btn-check" id="regulated-no" [value]="false" name="isRegulatedArea">
+        <label class="btn w-100 btn-outline-danger" for="regulated-no">
+          아니오
+        </label>
+      </div>
+    </div>
+
     <div class="form-floating mb-3">
       <input class="form-control" id="price" type="string" placeholder="price" formControlName="price"
         title="취득 당시가액으로 산정하나 해당금액이 시가표준액보더 적은경우 시가표준액 적용" (input)="onPriceChange($event)" [value]="test">
