@@ -10,7 +10,8 @@
         </label>
       </div>
       <div class="form-check col-4">
-        <input formControlName="soleHouse" checked type="radio" class="btn-check" id="sole-no" [value]="false" name="soleHouse">
+        <input formControlName="soleHouse" checked type="radio" class="btn-check" id="sole-no" [value]="false"
+          name="soleHouse">
         <label class="btn w-100 btn-outline-danger" for="sole-no">
           아니오
         </label>
@@ -18,11 +19,11 @@
     </div>
     <div class="form-floating mb-3">
       <input class="form-control" id="price" type="string" placeholder="price" formControlName="price"
-        title="취득 당시가액으로 산정하나 해당금액이 시가표준액보더 적은경우 시가표준액 적용">
+        title="취득 당시가액으로 산정하나 해당금액이 시가표준액보다 적은경우 시가표준액 적용">
       <label for="price">시가표준액 (공시지가)</label>
     </div>
     <div class="form-floating mb-3">
-      <input class="form-control" id="price" type="string" placeholder="price" formControlName="price">
+      <input class="form-control" id="last-tax" type="string" placeholder="last-tax" formControlName="lastTax">
       <label for="lastTax">직전연도 재산세</label>
     </div>
     <button class="btn w-100 btn-secondary my-2">계산하기</button>
@@ -33,12 +34,16 @@
     <div class="card-body">
       <h5 class="card-title">입찰가</h5>
       <hr>
-      <div class="d-flex text-center">
+      <div class="d-flex text-center" title="공시지가 9억이하 1주택보유자에 적용되는 할인세율(2023년 까지 한시적 운영)">
+        <p class="card-text col-4">특례세율</p>
+        <p class="card-text col-8">{{discountRate ? '예' : '아니오'}}</p>
+      </div>
+      <div class="d-flex text-center" title="공시지가의 60%">
         <p class="card-text col-4">과세표준</p>
         <p class="card-text col-8">{{standard | currency:'KRW'}}</p>
       </div>
       <div class="d-flex text-center">
-        <p class="card-text col-4">세액</p>
+        <p class="card-text col-4">보유세</p>
         <p class="card-text col-8">{{standardTax | currency:'KRW'}}</p>
       </div>
       <div class="d-flex text-center">
@@ -47,7 +52,7 @@
       </div>
       <div class="d-flex text-center">
         <p class="card-text col-4">초과상한</p>
-        <p class="card-text col-8">{{standardTax | currency:'KRW'}}</p>
+        <p class="card-text col-8">{{maxLimit | currency:'KRW'}}</p>
       </div>
     </div>
   </div>
