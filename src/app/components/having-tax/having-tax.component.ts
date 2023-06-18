@@ -58,7 +58,7 @@ export class HavingTaxComponent implements OnInit {
         this.standardTaxRate = 0.001;
       } else {
         this.discountRate = false;
-        this.base = 60000;        
+        this.base = 60000;
         this.standardTaxRate = this.standardTaxRates[1];
       }
       // this.doubleTaxSubtraction = 30000;
@@ -71,7 +71,7 @@ export class HavingTaxComponent implements OnInit {
         this.standardTaxRate = 0.002;
       } else {
         this.discountRate = false;
-        this.base = 195000;        
+        this.base = 195000;
         this.standardTaxRate = this.standardTaxRates[2];
       }
       // this.doubleTaxSubtraction = 180000;
@@ -90,8 +90,20 @@ export class HavingTaxComponent implements OnInit {
       // this.doubleTaxSubtraction = 630000;
     }
 
-    this.standardTax = this.standard * this.standardTaxRate - this.doubleTaxSubtraction + this.base;
-    
+    this.standardTax =
+      this.standard * this.standardTaxRate -
+      this.doubleTaxSubtraction +
+      this.base;
+
+    if (this.maxLimit > 0 && this.standardTax > this.maxLimit) {
+      this.standardTax = this.maxLimit;
+    }
+
     this.municipalEduTax = this.standardTax * this.municipalEduTaxRate;
+  }
+
+  onVacationHouseClick() {
+    this.standard = this.form.value.price * this.standardRate;
+    this.standardTax = this.standard * 0.04;
   }
 }
