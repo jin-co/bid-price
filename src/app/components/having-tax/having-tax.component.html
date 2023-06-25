@@ -17,6 +17,22 @@
         </label>
       </div>
     </div>
+    <div class="d-flex form-control my-3 align-items-center" title="개발제한구역은 별장, 고급주택만 해당">
+      <label class="col-4">도시지역분 대상</label>
+      <div class="form-check col-4">
+        <input formControlName="isCityTax" type="radio" class="btn-check" id="city-yes" [value]="true" name="isCityTax">
+        <label class="btn w-100 btn-outline-success" for="city-yes">
+          예
+        </label>
+      </div>
+      <div class="form-check col-4">
+        <input formControlName="isCityTax" checked type="radio" class="btn-check" id="city-no" [value]="false"
+          name="isCityTax">
+        <label class="btn w-100 btn-outline-danger" for="city-no">
+          아니오
+        </label>
+      </div>
+    </div>
     <div class="form-floating mb-3">
       <input class="form-control" id="price" type="string" placeholder="price" formControlName="price"
         title="취득 당시가액으로 산정하나 해당금액이 시가표준액보다 적은경우 시가표준액 적용">
@@ -25,6 +41,11 @@
     <div class="form-floating mb-3">
       <input class="form-control" id="last-tax" type="string" placeholder="last-tax" formControlName="lastTax">
       <label for="lastTax">직전연도 재산세</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input class="form-control" id="last-city-tax" type="string" placeholder="last-city-tax"
+        formControlName="lastCityTax">
+      <label for="lastCityTax">직전연도 도시지역분</label>
     </div>
     <div class="d-flex gap-1">
       <button class="btn col-6 btn-secondary my-2">계산하기</button>
@@ -55,12 +76,24 @@
         <p class="card-text col-8">{{standardTax | currency:'KRW'}}</p>
       </div>
       <div class="d-flex text-center">
-        <p class="card-text col-4">지방세</p>
+        <p class="card-text col-4">도시지역분 초과상한</p>
+        <p class="card-text col-8">{{cityTaxMaxLimit | currency:'KRW'}}</p>
+      </div>
+      <div class="d-flex text-center" title="과세표준 * 0.0014">
+        <p class="card-text col-4">도시지역분</p>
+        <p class="card-text col-8">{{cityTax | currency:'KRW'}}</p>
+      </div>
+      <div class="d-flex text-center" title="재산세 (도시지역분 제외) * 20%">
+        <p class="card-text col-4">지방교육세</p>
         <p class="card-text col-8">{{municipalEduTax | currency:'KRW'}}</p>
       </div>
       <div class="d-flex text-center">
+        <p class="card-text col-4">지역자원시설세</p>
+        <p class="card-text col-8">{{fireTax | currency:'KRW'}}</p>
+      </div>
+      <div class="d-flex text-center">
         <p class="card-text col-4">세금총액</p>
-        <p class="card-text col-8">{{standardTax + municipalEduTax | currency:'KRW'}}</p>
+        <p class="card-text col-8">{{standardTax + municipalEduTax + cityTax | currency:'KRW'}}</p>
       </div>
     </div>
   </div>
