@@ -7,9 +7,10 @@ import { CalculatorComponent } from './components/calculator/calculator.componen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HavingTaxComponent } from './components/having-tax/having-tax.component';
+import { CombinedHousingTaxComponent } from './components/combined-housing-tax/combined-housing-tax.component';
 
 @NgModule({
-  declarations: [AppComponent, CalculatorComponent, HavingTaxComponent],
+  declarations: [AppComponent, CalculatorComponent, HavingTaxComponent, CombinedHousingTaxComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

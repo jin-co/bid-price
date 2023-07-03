@@ -1,0 +1,95 @@
+<div class="container p-3">
+  <h2 class="mt-5 mb-3" title="국내에 보유한 주택의 공시지가 총 합계가 6억원을 초과할 때 부과 (단, 1세대 1주택자는 11억을 초과할 때 부과)">종합부동산세</h2>
+  <form [formGroup]="form" (submit)="onSubmit()">
+    <div class="d-flex form-control my-3 align-items-center">
+      <label class="col-4">법인여부</label>
+      <div class="form-check col-4">
+        <input formControlName="cooperate" type="radio" class="btn-check" id="cooperate-yes" [value]="true"
+          name="cooperate">
+        <label class="btn w-100 btn-outline-success" for="cooperate-yes">
+          예
+        </label>
+      </div>
+      <div class="form-check col-4">
+        <input formControlName="cooperate" checked type="radio" class="btn-check" id="cooperate-no" [value]="false"
+          name="cooperate">
+        <label class="btn w-100 btn-outline-danger" for="cooperate-no">
+          아니오
+        </label>
+      </div>
+    </div>
+    <div class="mb-3">
+      <select class="form-select" formControlName="multiHome"
+        title="*보유주택 산정 시 시가 1억 이하의 주택은 제외. 단, 입주권, 분양권의 시가와 무관하게 포함(지방령28조4항)">
+        <option [ngValue]="0">보유주택 수</option>
+        <option [ngValue]="1">1 주택</option>
+        <option [ngValue]="2">2 주택</option>
+        <option [ngValue]="3">3 주택 이상 또는 조정대상지역 2주택 이상</option>
+      </select>
+    </div>
+    <div class="form-floating mb-3">
+      <input class="form-control" id="price" type="string" placeholder="price" formControlName="price"
+        title="취득 당시가액으로 산정하나 해당금액이 시가표준액보다 적은경우 시가표준액 적용">
+      <label for="price">공시지가 합계</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input class="form-control" id="last-tax" type="string" placeholder="last-tax" formControlName="lastTax">
+      <label for="lastTax">직전연도 재산세</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input class="form-control" id="last-city-tax" type="string" placeholder="last-city-tax"
+        formControlName="lastCityTax">
+      <label for="lastCityTax">직전연도 종합부동산세</label>
+    </div>
+    <div class="mb-3 d-flex">
+      <div class="form-floating col-6">
+        <input class="form-control" id="age" type="number" placeholder="age" formControlName="age"
+          title="연령 60세(20%), 65세(30%), 70세(40%) 세액공제. 공제세액은 연령과 보유기간을 합산하여 최대 80%">
+        <label for="age">연령</label>
+      </div>
+      <div class="form-floating col-6">
+        <input class="form-control" id="period" type="number" placeholder="period" formControlName="period"
+          title="보유기간 5년(20%), 10년(40%), 15년(50%) 세액공제. 공제세액은 연령과 보유기간을 합산하여 최대 80%">
+        <label for="period">보유기간</label>
+      </div>
+    </div>
+    <button class="btn w-100 btn-secondary my-2">계산하기</button>
+  </form>
+
+  <!-- result -->
+  <div class="card text-left bg-primary text-white">
+    <div class="card-body">
+      <h5 class="card-title">입찰가</h5>
+      <hr>
+      <div class="d-flex text-center" title="공시지가의 60%">
+        <p class="card-text col-4">과세표준</p>
+        <p class="card-text col-8">{{standard | currency:'KRW'}}</p>
+      </div>
+      <div class="d-flex text-center" title="시가변동에 의한 과중한 세부담을 방지하기 위한 세액상한선">
+        <p class="card-text col-4">초과상한</p>
+        <p class="card-text col-8">{{maxLimit | currency:'KRW'}}</p>
+      </div>
+      <div class="d-flex text-center">
+        <p class="card-text col-4">종합부동산세({{standardTaxRate | percent:'1.0-4'}})</p>
+        <p class="card-text col-8">{{standardTax | currency:'KRW'}}</p>
+      </div>
+      <div class="d-flex text-center">
+        <p class="card-text col-4">재산세공제</p>
+        <p class="card-text col-8"></p>
+      </div>
+      <div class="d-flex text-center">
+        <p class="card-text col-4">세액공제
+          ({{taxDiscountAge + taxDiscountPeriod | percent:'1.0-4'}})</p>
+        <p class="card-text col-8">{{taxDiscount | currency:'KRW'}}</p>
+      </div>
+      <div class="d-flex text-center">
+        <p class="card-text col-4">농어촌특별세({{.2 | percent:'1.0-2'}})</p>
+        <p class="card-text col-8">{{ruralTax | currency:'KRW'}}</p>
+      </div>
+      <div class="d-flex text-center">
+        <p class="card-text col-4">세금총액</p>
+        <p class="card-text col-8">{{taxTotal - ((taxDiscount > 0) ? taxDiscount : 0) | currency:'KRW'}}</p>
+      </div>
+    </div>
+  </div>
+</div>
