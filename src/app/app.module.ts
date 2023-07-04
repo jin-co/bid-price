@@ -8,9 +8,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HavingTaxComponent } from './components/having-tax/having-tax.component';
 import { CombinedHousingTaxComponent } from './components/combined-housing-tax/combined-housing-tax.component';
+import { RentTaxComponent } from './components/rent-tax/rent-tax.component';
 
 @NgModule({
-  declarations: [AppComponent, CalculatorComponent, HavingTaxComponent, CombinedHousingTaxComponent],
+  declarations: [AppComponent, CalculatorComponent, HavingTaxComponent, CombinedHousingTaxComponent, RentTaxComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
