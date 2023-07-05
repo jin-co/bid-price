@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-rent-tax',
-  templateUrl: './rent-tax.component.html',
-  styleUrls: ['./rent-tax.component.css'],
+  selector: 'app-selling-tax',
+  templateUrl: './selling-tax.component.html',
+  styleUrls: ['./selling-tax.component.css']
 })
-export class RentTaxComponent {
+export class SellingTaxComponent {
   revenue: number = 0;
   totalRevenue: number = 0;
   expenses: number = 0;

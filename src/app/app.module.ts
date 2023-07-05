@@ -9,9 +9,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HavingTaxComponent } from './components/having-tax/having-tax.component';
 import { CombinedHousingTaxComponent } from './components/combined-housing-tax/combined-housing-tax.component';
 import { RentTaxComponent } from './components/rent-tax/rent-tax.component';
+import { SellingTaxComponent } from './components/selling-tax/selling-tax.component';
 
 @NgModule({
-  declarations: [AppComponent, CalculatorComponent, HavingTaxComponent, CombinedHousingTaxComponent, RentTaxComponent],
+  declarations: [
+    AppComponent,
+    CalculatorComponent,
+    HavingTaxComponent,
+    CombinedHousingTaxComponent,
+    RentTaxComponent,
+    SellingTaxComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
