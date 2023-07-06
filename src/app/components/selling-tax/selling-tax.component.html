@@ -4,87 +4,59 @@
     <div class="mb-3">
       <select class="form-select" formControlName="multiHome"
         title="*보유주택 산정 시 시가 1억 이하의 주택은 제외. 단, 입주권, 분양권의 시가와 무관하게 포함(지방령28조4항)">
-        <option [ngValue]="0">보유주택 수</option>
         <option [ngValue]="1">1 주택</option>
         <option [ngValue]="2">2 주택</option>
         <option [ngValue]="3">3 주택 이상</option>
       </select>
     </div>
-    <div class="d-flex form-control my-3 align-items-center" title="주택임대 수입 2천만원 이하인자는 분리과세 선택가능">
-      <label class="col-4">구분선택</label>
+    <div class="d-flex form-control my-3 align-items-center">
+      <label class="col-4">조정지역여부</label>
       <div class="form-check col-4">
-        <input (change)="onStandardChange()" formControlName="isIntegratedOrSeparate" type="radio" class="btn-check"
-          id="integrated" [value]="'integrated'" name="isIntegratedOrSeparate">
-        <label class="btn w-100 btn-outline-success" for="integrated">
-          종합과세
-        </label>
-      </div>
-      <div class="form-check col-4">
-        <input (change)="onStandardChange()" formControlName="isIntegratedOrSeparate" type="radio" class="btn-check"
-          id="separated" [value]="'separated'" name="isIntegratedOrSeparate">
-        <label class="btn w-100 btn-outline-danger" for="separated">
-          분리과세
-        </label>
-      </div>
-    </div>
-    <div *ngIf="isRegistered" class="d-flex form-control my-3 align-items-center">
-      <label class="col-4">임대주택 등록여부</label>
-      <div class="form-check col-4">
-        <input formControlName="registered" type="radio" class="btn-check" id="registered-yes" [value]="true"
-          name="registered">
-        <label class="btn w-100 btn-outline-success" for="registered-yes">
+        <input formControlName="isRegulatedArea" type="radio" class="btn-check" id="selling-regulated-yes"
+          [value]="true" name="isRegulatedArea">
+        <label class="btn w-100 btn-outline-success" for="selling-regulated-yes">
           예
         </label>
       </div>
       <div class="form-check col-4">
-        <input formControlName="registered" type="radio" class="btn-check" id="registered-no" [value]="false"
-          name="registered">
-        <label class="btn w-100 btn-outline-danger" for="registered-no">
+        <input formControlName="isRegulatedArea" type="radio" class="btn-check" id="selling-regulated-no"
+          [value]="false" name="isRegulatedArea">
+        <label class="btn w-100 btn-outline-danger" for="selling-regulated-no">
           아니오
         </label>
       </div>
     </div>
     <div class="mb-3 d-flex">
       <div class="form-floating col-4">
-        <input class="form-control" id="rent" type="string" placeholder="rent" formControlName="rent">
-        <label for="rent">월세</label>
+        <input class="form-control" id="holding-period" type="string" placeholder="holding-period"
+          formControlName="holdingPeriod">
+        <label for="holding-period">보유기간</label>
       </div>
       <div class="form-floating col-4">
-        <input class="form-control" id="deposit" type="string" placeholder="deposit" formControlName="deposit">
-        <label for="deposit">보증금 (간주임대료)</label>
+        <input class="form-control" id="living-period" type="string" placeholder="living-period"
+          formControlName="livingPeriod">
+        <label for="living-period">거주기간</label>
       </div>
       <div class="form-floating col-4">
-        <input class="form-control" id="other-revenue" type="string" placeholder="other-revenue"
-          formControlName="otherRevenue">
-        <label for="otherRevenue">기타수입</label>
-      </div>
-    </div>
-    <div class="mb-3">
-      <div class="form-floating mb-3">
-        <input class="form-control" id="revenue-deduction" type="string" placeholder="rent" formControlName="revenueDeduction">
-        <label for="revenue-deduction">소득공제</label>
+        <input class="form-control" id="standard-price" type="string" placeholder="standard-price"
+          formControlName="standardPrice">
+        <label for="standard-price">공시지가</label>
       </div>
     </div>
     <div class="mb-3 d-flex">
-      <div class="form-floating col-4 mb-3">
+      <div class="form-floating col-4">
+        <input class="form-control" id="buying-price" type="string" placeholder="buying-price"
+          formControlName="buyingPrice">
+        <label for="buying-price">취득가액</label>
+      </div>
+      <div class="form-floating col-4">
         <input class="form-control" id="expenses" type="string" placeholder="expenses" formControlName="expenses">
         <label for="expenses">필요경비</label>
       </div>
-      <div class="form-floating col-4 mb-3">
-        <input class="form-control" id="last-revenue" type="string" placeholder="expenses"
-          formControlName="lastRevenue">
-        <label for="last-revenue">직전연도 수입</label>
-      </div>
-      <div class="form-floating col-4 mb-3">
-        <select class="form-select" formControlName="expensesRateChart"
-          title="*보유주택 산정 시 시가 1억 이하의 주택은 제외. 단, 입주권, 분양권의 시가와 무관하게 포함(지방령28조4항)">
-          <option [ngValue]="0">경비율</option>
-          <option [ngValue]="1">고가주택임대(9억초과)</option>
-          <option [ngValue]="2">일반주택임대(9억이하)</option>
-          <option [ngValue]="3">국민주택 5호 5년이상(공동, 단독)</option>
-          <option [ngValue]="4">국민주택 5호 5년이상(다가구)</option>
-          <option [ngValue]="5">주택의 전대, 전전대</option>
-        </select>
+      <div class="form-floating col-4">
+        <input class="form-control" id="selling-price" type="string" placeholder="expenses"
+          formControlName="sellingPrice">
+        <label for="selling-price">양도가액</label>
       </div>
     </div>
     <button class="btn w-100 btn-secondary my-2">계산하기</button>
@@ -96,24 +68,8 @@
       <h5 class="card-title">입찰가</h5>
       <hr>
       <div class="d-flex text-center">
-        <p class="card-text col-4">수입</p>
-        <p class="card-text col-8">{{revenue | currency:'KRW'}}</p>
-      </div>
-      <div class="d-flex text-center">
         <p class="card-text col-4">필요경비</p>
         <p class="card-text col-8">{{expenses | currency:'KRW'}}</p>
-      </div>
-      <div class="d-flex text-center">
-        <p class="card-text col-4">소득세</p>
-        <p class="card-text col-8">{{revenueTax | currency:'KRW'}}</p>
-      </div>
-      <div class="d-flex text-center">
-        <p class="card-text col-4">지방소득세</p>
-        <p class="card-text col-8">{{regionalTax | currency:'KRW'}}</p>
-      </div>
-      <div class="d-flex text-center">
-        <p class="card-text col-4">세금총액</p>
-        <p class="card-text col-8">{{revenueTax + regionalTax | currency:'KRW'}}</p>
       </div>
     </div>
   </div>
