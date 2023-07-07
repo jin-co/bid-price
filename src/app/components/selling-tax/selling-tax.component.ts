@@ -170,7 +170,7 @@ export class SellingTaxComponent {
       this.deduction = 65400000;
     }
 
-    //다주택 중과세
+    //다주택 중과세 -> 보유기간 중과세와 비교하여 큰 금액으로 산정
     if (this.form.value.isRegulatedArea) {
       if (this.form.value.multiHome <= 2) {
         this.sellingTaxRate += 0.2;
