@@ -33,48 +33,37 @@
       </div>
     </div>
 
-    <div class="d-flex form-control my-3 align-items-center">
+    <div class="d-flex form-control my-3 align-items-center" title="조정지역에 위치한 주택의 경우 중과세 산정시 한단계 높은 세율적용">
       <label class="col-4">조정지역여부</label>
       <div class="form-check col-4">
-        <input formControlName="isRegulatedArea" type="radio" class="btn-check" id="regulated-yes" [value]="true" name="isRegulatedArea">
+        <input formControlName="isRegulatedArea" type="radio" class="btn-check" id="regulated-yes" [value]="true"
+          name="isRegulatedArea">
         <label class="btn w-100 btn-outline-success" for="regulated-yes">
           예
         </label>
       </div>
       <div class="form-check col-4">
-        <input formControlName="isRegulatedArea" type="radio" class="btn-check" id="regulated-no" [value]="false" name="isRegulatedArea">
+        <input formControlName="isRegulatedArea" type="radio" class="btn-check" id="regulated-no" [value]="false"
+          name="isRegulatedArea">
         <label class="btn w-100 btn-outline-danger" for="regulated-no">
           아니오
         </label>
       </div>
     </div>
 
-    <div class="form-floating mb-3">
-      <input class="form-control" id="price" type="string" placeholder="price" formControlName="price"
-        title="취득 당시가액으로 산정하나 해당금액이 시가표준액보더 적은경우 시가표준액 적용" (input)="onPriceChange($event)" [value]="test">
-      <label for="price">시가표준액 (공시지가)</label>
-      <!-- <p class="form-control"> {{form.get('price')?.value | currency}}</p> -->
+    <div class="d-flex">
+      <app-input class="col-4" formControlName="price" [type]="'number'" [id]="'price'" [label]="'시가표준액 (공시지가)'"
+        [title]="'취득 당시가액으로 산정하나 해당금액이 시가표준액보더 적은경우 시가표준액 적용'"></app-input>
+      <app-input class="col-4" formControlName="bid" [type]="'number'" [id]="'bid'" [label]="'입찰가격'"></app-input>
+      <app-input class="col-4" formControlName="liability" [type]="'number'" [id]="'liability'"
+        [label]="'인수금액'"></app-input>
     </div>
 
-    <div class="form-floating mb-3">
-      <input class="form-control" id="bid" type="number" placeholder="bid" formControlName="bid">
-      <label for="bid">입찰가격</label>
-    </div>
-
-    <div class="form-floating mb-3">
-      <input class="form-control" id="liability" type="number" placeholder="liability" formControlName="liability"
-        title="인수금액">
-      <label for="liability">인수금액</label>
-    </div>
-
-    <div class="form-floating mb-3">
-      <input class="form-control" id="address" type="number" placeholder="address" formControlName="address">
-      <label for="address">경매목적물 주소</label>
-    </div>
+    <app-input formControlName="address" [id]="'address'" [label]="'경매목적물 주소'"></app-input>
 
     <div class="mb-3">
       <select class="form-select" formControlName="multiHomeOrCorporate"
-        title="*보유주택 산정 시 시가 1억 이하의 주택은 제외. 단, 입주권, 분양권의 시가와 무관하게 포함(지방령28조4항)">
+        title="*보유주택 산정 시 시가 1억 이하의 오피스텔과 주택(단, 입주권, 분양권의 시가와 무관하게 포함[지방령28조4항]), 농어촌주택, 국가 문화재 등록주택 어린이집, 사원임대주택 등은 제외.">
         <option [ngValue]="0">구매 후 보유주택 수 (법인여부)</option>
         <option [ngValue]="1">1 주택</option>
         <option [ngValue]="2">2 주택</option>

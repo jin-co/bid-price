@@ -10,6 +10,7 @@ import { HavingTaxComponent } from './components/having-tax/having-tax.component
 import { CombinedHousingTaxComponent } from './components/combined-housing-tax/combined-housing-tax.component';
 import { RentTaxComponent } from './components/rent-tax/rent-tax.component';
 import { SellingTaxComponent } from './components/selling-tax/selling-tax.component';
+import { InputComponent } from './components/shared/input/input.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SellingTaxComponent } from './components/selling-tax/selling-tax.compon
     CombinedHousingTaxComponent,
     RentTaxComponent,
     SellingTaxComponent,
+    InputComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,3 @@
-import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
 
@@ -62,6 +61,7 @@ export class CalculatorComponent implements OnInit {
   }
 
   calculateAcquisitionTax() {
+    //생애최초구입 감면
     if (this.form.value.firstBuy) {
       if (this.form.value.price <= 150000000) {
         this.acquisitionTax = 0;
@@ -74,10 +74,12 @@ export class CalculatorComponent implements OnInit {
       return;
     }
 
+    //공시지가 1억원 주택 중과세 제외
     if (this.form.value.price <= 100000000) {
       this.isWeightedTax = false;
       this.acquisitionTaxRate = this.acquisitionTaxRates[0];
     } else {
+      //표준세율
       if (this.form.value.multiHomeOrCorporate <= 1) {
         this.isWeightedTax = false;
         if (this.form.value.price < 600000000) {
@@ -91,6 +93,7 @@ export class CalculatorComponent implements OnInit {
           this.acquisitionTaxRate = this.acquisitionTaxRates[1];
         }
       } else if (this.form.value.multiHomeOrCorporate == 2) {
+        //중과세율
         this.isWeightedTax = true;
         if (this.isRegulatedArea) {
           this.acquisitionTaxRate = 0.08;
@@ -98,6 +101,7 @@ export class CalculatorComponent implements OnInit {
           this.acquisitionTaxRate = 0.03;
         }
       } else if (this.form.value.multiHomeOrCorporate == 3) {
+        //중과세율
         this.isWeightedTax = true;
         if (this.isRegulatedArea) {
           this.acquisitionTaxRate = 0.12;
@@ -105,6 +109,7 @@ export class CalculatorComponent implements OnInit {
           this.acquisitionTaxRate = 0.08;
         }
       } else {
+        //중과세율
         this.isWeightedTax = true;
         this.acquisitionTaxRate = 0.12;
       }

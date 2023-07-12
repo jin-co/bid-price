@@ -27,31 +27,24 @@
         <option [ngValue]="3">3 주택 이상 또는 조정대상지역 2주택 이상</option>
       </select>
     </div>
-    <div class="form-floating mb-3">
-      <input class="form-control" id="price" type="string" placeholder="price" formControlName="price"
-        title="취득 당시가액으로 산정하나 해당금액이 시가표준액보다 적은경우 시가표준액 적용">
-      <label for="price">공시지가 합계</label>
+
+    <div class="d-flex">
+      <app-input class="col-4" formControlName="price" [type]="'number'" [id]="'price'" [label]="'공시지가 합계'"
+        [title]="'취득 당시가액으로 산정하나 해당금액이 시가표준액보더 적은경우 시가표준액 적용'"></app-input>
+
+      <app-input class="col-4" formControlName="lastTax" [type]="'number'" [id]="'last-tax'"
+        [label]="'직전연도 재산세'"></app-input>
+
+      <app-input class="col-4" formControlName="lastCityTax" [type]="'number'" [id]="'last-city-tax'"
+        [label]="'직전연도 종합부동산세'"></app-input>
     </div>
-    <div class="form-floating mb-3">
-      <input class="form-control" id="last-tax" type="string" placeholder="last-tax" formControlName="lastTax">
-      <label for="lastTax">직전연도 재산세</label>
-    </div>
-    <div class="form-floating mb-3">
-      <input class="form-control" id="last-city-tax" type="string" placeholder="last-city-tax"
-        formControlName="lastCityTax">
-      <label for="lastCityTax">직전연도 종합부동산세</label>
-    </div>
+
     <div class="mb-3 d-flex">
-      <div class="form-floating col-6">
-        <input class="form-control" id="age" type="number" placeholder="age" formControlName="age"
-          title="연령 60세(20%), 65세(30%), 70세(40%) 세액공제. 공제세액은 연령과 보유기간을 합산하여 최대 80%">
-        <label for="age">연령</label>
-      </div>
-      <div class="form-floating col-6">
-        <input class="form-control" id="period" type="number" placeholder="period" formControlName="period"
-          title="보유기간 5년(20%), 10년(40%), 15년(50%) 세액공제. 공제세액은 연령과 보유기간을 합산하여 최대 80%">
-        <label for="period">보유기간</label>
-      </div>
+      <app-input class="col-6" formControlName="age" [type]="'number'" [id]="'age'"
+        [title]="'연령 60세(20%), 65세(30%), 70세(40%) 세액공제. 공제세액은 연령과 보유기간을 합산하여 최대 80%'" [label]="'연령'"></app-input>
+
+      <app-input class="col-6" formControlName="period" [type]="'number'" [id]="'period'"
+        [title]="'보유기간 5년(20%), 10년(40%), 15년(50%) 세액공제. 공제세액은 연령과 보유기간을 합산하여 최대 80%'" [label]="'보유기간'"></app-input>
     </div>
     <button class="btn w-100 btn-secondary my-2">계산하기</button>
   </form>

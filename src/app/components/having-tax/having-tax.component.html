@@ -33,20 +33,19 @@
         </label>
       </div>
     </div>
-    <div class="form-floating mb-3">
-      <input class="form-control" id="price" type="string" placeholder="price" formControlName="price"
-        title="취득 당시가액으로 산정하나 해당금액이 시가표준액보다 적은경우 시가표준액 적용">
-      <label for="price">시가표준액 (공시지가)</label>
+    <app-input formControlName="address" [id]="'address'" [label]="'경매목적물 주소'"></app-input>
+
+    <div class="d-flex">
+      <app-input class="col-4" formControlName="price" [type]="'number'" [id]="'price'" [label]="'시가표준액 (공시지가)'"
+        [title]="'취득 당시가액으로 산정하나 해당금액이 시가표준액보더 적은경우 시가표준액 적용'"></app-input>
+
+      <app-input class="col-4" formControlName="lastTax" [type]="'number'" [id]="'last-tax'"
+        [label]="'직전연도 재산세'"></app-input>
+
+      <app-input class="col-4" formControlName="lastCityTax" [type]="'number'" [id]="'last-city-tax'"
+        [label]="'직전연도 도시지역분'"></app-input>
     </div>
-    <div class="form-floating mb-3">
-      <input class="form-control" id="last-tax" type="string" placeholder="last-tax" formControlName="lastTax">
-      <label for="lastTax">직전연도 재산세</label>
-    </div>
-    <div class="form-floating mb-3">
-      <input class="form-control" id="last-city-tax" type="string" placeholder="last-city-tax"
-        formControlName="lastCityTax">
-      <label for="lastCityTax">직전연도 도시지역분</label>
-    </div>
+
     <div class="d-flex gap-1">
       <button class="btn col-6 btn-secondary my-2">계산하기</button>
       <button type="button" (click)="onVacationHouseClick()" title="4% 단일세율"
