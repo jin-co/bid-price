@@ -44,37 +44,21 @@
         </label>
       </div>
     </div>
-    <div class="mb-3 d-flex">
-      <div class="form-floating col-4">
-        <input class="form-control" id="rent" type="string" placeholder="rent" formControlName="rent">
-        <label for="rent">월세</label>
-      </div>
-      <div class="form-floating col-4">
-        <input class="form-control" id="deposit" type="string" placeholder="deposit" formControlName="deposit">
-        <label for="deposit">보증금 (간주임대료)</label>
-      </div>
-      <div class="form-floating col-4">
-        <input class="form-control" id="other-revenue" type="string" placeholder="other-revenue"
-          formControlName="otherRevenue">
-        <label for="otherRevenue">기타수입</label>
-      </div>
+    <div class="d-flex">
+      <app-input class="col-4" formControlName="rent" [type]="'number'" [id]="'rent'" [label]="'월세'"></app-input>
+      <app-input class="col-4" formControlName="deposit" [type]="'number'" [id]="'deposit'"
+        [label]="'보증금 (간주임대료)'"></app-input>
+      <app-input class="col-4" formControlName="otherRevenue" [type]="'number'" [id]="'other-revenue'"
+        [label]="'기타수입'"></app-input>
     </div>
-    <div class="mb-3">
-      <div class="form-floating mb-3">
-        <input class="form-control" id="revenue-deduction" type="string" placeholder="rent" formControlName="revenueDeduction">
-        <label for="revenue-deduction">소득공제</label>
-      </div>
-    </div>
-    <div class="mb-3 d-flex">
-      <div class="form-floating col-4 mb-3">
-        <input class="form-control" id="expenses" type="string" placeholder="expenses" formControlName="expenses">
-        <label for="expenses">필요경비</label>
-      </div>
-      <div class="form-floating col-4 mb-3">
-        <input class="form-control" id="last-revenue" type="string" placeholder="expenses"
-          formControlName="lastRevenue">
-        <label for="last-revenue">직전연도 수입</label>
-      </div>
+    <app-input formControlName="revenueDeduction" [type]="'number'" [id]="'revenue-deduction'"
+      [label]="'소득공제'"></app-input>
+
+    <div class="d-flex">
+      <app-input class="col-4" formControlName="expenses" [type]="'number'" [id]="'expenses'"
+        [label]="'필요경비'"></app-input>
+      <app-input class="col-4" formControlName="lastRevenue" [type]="'number'" [id]="'last-revenue'"
+        [label]="'직전연도 수입'"></app-input>
       <div class="form-floating col-4 mb-3">
         <select class="form-select" formControlName="expensesRateChart"
           title="*보유주택 산정 시 시가 1억 이하의 주택은 제외. 단, 입주권, 분양권의 시가와 무관하게 포함(지방령28조4항)">

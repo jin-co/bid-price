@@ -32,6 +32,7 @@ export class HavingTaxComponent implements OnInit {
       soleHouse: new FormControl(false),
       isCityTax: new FormControl(false),
       price: new FormControl(null),
+      address: new FormControl(null),
       lastTax: new FormControl(null),
       lastCityTax: new FormControl(null),
     });

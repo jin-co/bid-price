@@ -26,38 +26,25 @@
         </label>
       </div>
     </div>
-    <div class="mb-3 d-flex">
-      <div class="form-floating col-4">
-        <input class="form-control" id="holding-period" type="string" placeholder="holding-period"
-          formControlName="holdingPeriod">
-        <label for="holding-period">보유기간</label>
-      </div>
-      <div class="form-floating col-4">
-        <input class="form-control" id="living-period" type="string" placeholder="living-period"
-          formControlName="livingPeriod">
-        <label for="living-period">거주기간</label>
-      </div>
-      <div class="form-floating col-4">
-        <input class="form-control" id="standard-price" type="string" placeholder="standard-price"
-          formControlName="standardPrice">
-        <label for="standard-price">공시지가</label>
-      </div>
+    <div class="d-flex">
+      <app-input class="col-4" formControlName="holdingPeriod" [type]="'number'" [id]="'holding-period'"
+        [label]="'보유기간'"></app-input>
+
+      <app-input class="col-4" formControlName="livingPeriod" [type]="'number'" [id]="'living-period'"
+        [label]="'거주기간'"></app-input>
+
+      <app-input class="col-4" formControlName="standardPrice" [type]="'number'" [id]="'standard-price'"
+        [label]="'공시지가'"></app-input>
     </div>
-    <div class="mb-3 d-flex">
-      <div class="form-floating col-4">
-        <input class="form-control" id="buying-price" type="string" placeholder="buying-price"
-          formControlName="buyingPrice">
-        <label for="buying-price">취득가액</label>
-      </div>
-      <div class="form-floating col-4">
-        <input class="form-control" id="expenses" type="string" placeholder="expenses" formControlName="expenses">
-        <label for="expenses">필요경비</label>
-      </div>
-      <div class="form-floating col-4">
-        <input class="form-control" id="selling-price" type="string" placeholder="expenses"
-          formControlName="sellingPrice">
-        <label for="selling-price">양도가액</label>
-      </div>
+    <div class="d-flex">
+      <app-input class="col-4" formControlName="buyingPrice" [type]="'number'" [id]="'buying-price'"
+        [label]="'취득가액'"></app-input>
+
+      <app-input class="col-4" formControlName="expenses" [type]="'number'" [id]="'expenses'"
+        [label]="'필요경비'"></app-input>
+
+      <app-input class="col-4" formControlName="sellingPrice" [type]="'number'" [id]="'selling-price'"
+        [label]="'양도가액'"></app-input>
     </div>
     <button class="btn w-100 btn-secondary my-2">계산하기</button>
   </form>

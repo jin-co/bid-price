@@ -79,14 +79,10 @@
     <div class="card-body">
       <h5 class="card-title">입찰가</h5>
       <hr>
-      <div class="d-flex text-center">
-        <p class="card-text col-6">조정지역여부</p>
-        <p class="card-text col-6">{{isRegulatedArea? '예' : '아니오'}}</p>
-      </div>
-      <div class="d-flex text-center">
-        <p class="card-text col-6" title="중과세는 시가 1억을 초과하는 보유주택이 2이상인 경우 적용">중과세대상</p>
-        <p class="card-text col-6">{{isWeightedTax? '예' : '아니오'}}</p>
-      </div>
+      <app-output [title]="'조정지역여부'" [isYes]="isRegulatedArea"></app-output>
+      
+      <app-output [title]="'중과세대상'" [isYes]="isWeightedTax" [description]="'중과세는 시가 1억을 초과하는 보유주택이 2이상인 경우 적용'"></app-output>           
+            
       <div class="d-flex text-center">
         <p class="card-text col-4">취득세</p>
         <p class="card-text col-4">세율: {{acquisitionTaxRate | percent:'1.0-2'}}</p>
