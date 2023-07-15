@@ -1,3 +1,4 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -6,7 +7,18 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./output.component.css'],
 })
 export class OutputComponent {
-  @Input() isYes: boolean = false;
+  @Input() outputType: string = '';
   @Input() title: string = '';
+  
+  @Input() isYes: boolean = false;
   @Input() description: string = '';
+
+  @Input() output: number = 0;
+  @Input() rate: number = 0;
+
+  constructor(public currencyPipe:CurrencyPipe) {}
+
+  selectCurrency() {
+    this.currencyPipe
+  }
 }
