@@ -42,6 +42,7 @@ export class CalculatorComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
+    console.log(this.form.value.price)
     this.isRegulatedArea = this.form.value.isRegulatedArea;
     this.calculateAcquisitionTax();
     this.calculateMunicipalEduTax();

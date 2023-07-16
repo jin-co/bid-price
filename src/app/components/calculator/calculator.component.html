@@ -1,6 +1,8 @@
 <div class="container p-3">
   <h2 class="mt-5 mb-3">취득세</h2>
   <form [formGroup]="form" (submit)="onSubmit()">
+    <!-- <app-input formControlName="firstBuy" [type]="'radio'" [label]="'최초구매 여부'" [id]="'firstBuy'" [description]="'생애최초 구입시 2023년 12월 31일까지 취득세 감면혜택 (직전년도 소득이 7천만원 이하인 경우)'"></app-input>     -->
+
     <div class="d-flex form-control my-3 align-items-center">
       <label class="col-4" title="생애최초 구입시 2023년 12월 31일까지 취득세 감면혜택 (직전년도 소득이 7천만원 이하인 경우)">최초구매 여부</label>
       <div class="form-check col-4">
