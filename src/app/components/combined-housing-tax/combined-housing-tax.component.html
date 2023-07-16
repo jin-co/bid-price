@@ -49,40 +49,27 @@
     <button class="btn w-100 btn-secondary my-2">계산하기</button>
   </form>
 
-  <!-- result -->
+  <!-- output -->
   <div class="card text-left bg-primary text-white">
     <div class="card-body">
       <h5 class="card-title">입찰가</h5>
       <hr>
-      <div class="d-flex text-center" title="공시지가의 60%">
-        <p class="card-text col-4">과세표준</p>
-        <p class="card-text col-8">{{standard | currency:'KRW'}}</p>
-      </div>
-      <div class="d-flex text-center" title="시가변동에 의한 과중한 세부담을 방지하기 위한 세액상한선">
-        <p class="card-text col-4">초과상한</p>
-        <p class="card-text col-8">{{maxLimit | currency:'KRW'}}</p>
-      </div>
-      <div class="d-flex text-center">
-        <p class="card-text col-4">종합부동산세({{standardTaxRate | percent:'1.0-4'}})</p>
-        <p class="card-text col-8">{{standardTax | currency:'KRW'}}</p>
-      </div>
+      <app-output [outputType]="'currency'" [title]="'과세표준'" [output]="standard" [description]="'공시지가의 60%'" ></app-output>
+      
+      <app-output [outputType]="'currency'" [title]="'초과상한'" [output]="maxLimit" [description]="'시가변동에 의한 과중한 세부담을 방지하기 위한 세액상한선'" ></app-output>
+      
+      <app-output [outputType]="'currency-with-rate'" [title]="'종합부동산세'" [rate]="standardTaxRate" [output]="standardTax" ></app-output>
+                                                
       <div class="d-flex text-center">
         <p class="card-text col-4">재산세공제</p>
         <p class="card-text col-8"></p>
       </div>
-      <div class="d-flex text-center">
-        <p class="card-text col-4">세액공제
-          ({{taxDiscountAge + taxDiscountPeriod | percent:'1.0-4'}})</p>
-        <p class="card-text col-8">{{taxDiscount | currency:'KRW'}}</p>
-      </div>
-      <div class="d-flex text-center">
-        <p class="card-text col-4">농어촌특별세({{.2 | percent:'1.0-2'}})</p>
-        <p class="card-text col-8">{{ruralTax | currency:'KRW'}}</p>
-      </div>
-      <div class="d-flex text-center">
-        <p class="card-text col-4">세금총액</p>
-        <p class="card-text col-8">{{taxTotal - ((taxDiscount > 0) ? taxDiscount : 0) | currency:'KRW'}}</p>
-      </div>
+
+      <app-output [outputType]="'currency-with-rate'" [title]="'세액공제'" [rate]="taxDiscountAge + taxDiscountPeriod" [output]="taxDiscount" ></app-output>
+      
+      <app-output [outputType]="'currency-with-rate'" [title]="'농어촌특별세'" [rate]=".2" [output]="ruralTax" ></app-output>
+      
+      <app-output [outputType]="'currency'" [title]="'세금총액'" [output]="taxTotal - ((taxDiscount > 0) ? taxDiscount : 0)" ></app-output>            
     </div>
   </div>
 </div>

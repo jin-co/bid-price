@@ -49,15 +49,12 @@
     <button class="btn w-100 btn-secondary my-2">계산하기</button>
   </form>
 
-  <!-- result -->
+  <!-- output -->
   <div class="card text-left bg-primary text-white">
     <div class="card-body">
       <h5 class="card-title">입찰가</h5>
       <hr>
-      <div class="d-flex text-center">
-        <p class="card-text col-4">필요경비</p>
-        <p class="card-text col-8">{{expenses | currency:'KRW'}}</p>
-      </div>
+      <app-output [title]="'필요경비'" [output]="expenses"></app-output>
     </div>
   </div>
 </div>

@@ -53,47 +53,35 @@
     </div>
   </form>
 
-  <!-- result -->
+  <!-- output -->
   <div class="card text-left bg-primary text-white">
     <div class="card-body">
       <h5 class="card-title">입찰가</h5>
       <hr>
-      <div class="d-flex text-center" title="공시지가 9억이하 1주택보유자에 적용되는 할인세율(2023년 까지 한시적 운영)">
-        <p class="card-text col-4">특례세율</p>
-        <p class="card-text col-8">{{discountRate ? '예' : '아니오'}}</p>
-      </div>
-      <div class="d-flex text-center" title="공시지가의 60%">
-        <p class="card-text col-4">과세표준</p>
-        <p class="card-text col-8">{{standard | currency:'KRW'}}</p>
-      </div>
-      <div class="d-flex text-center" title="시가변동에 의한 과중한 세부담을 방지하기 위한 세액상한선">
-        <p class="card-text col-4">보유세 초과상한</p>
-        <p class="card-text col-8">{{maxLimit | currency:'KRW'}}</p>
-      </div>
-      <div class="d-flex text-center">
-        <p class="card-text col-4">보유세({{standardTaxRate | percent:'1.0-4'}})</p>
-        <p class="card-text col-8">{{standardTax | currency:'KRW'}}</p>
-      </div>
-      <div class="d-flex text-center">
-        <p class="card-text col-4">도시지역분 초과상한</p>
-        <p class="card-text col-8">{{cityTaxMaxLimit | currency:'KRW'}}</p>
-      </div>
-      <div class="d-flex text-center" title="과세표준 * 0.0014">
-        <p class="card-text col-4">도시지역분</p>
-        <p class="card-text col-8">{{cityTax | currency:'KRW'}}</p>
-      </div>
-      <div class="d-flex text-center" title="재산세 (도시지역분 제외) * 20%">
-        <p class="card-text col-4">지방교육세</p>
-        <p class="card-text col-8">{{municipalEduTax | currency:'KRW'}}</p>
-      </div>
-      <div class="d-flex text-center">
-        <p class="card-text col-4">지역자원시설세</p>
-        <p class="card-text col-8">{{fireTax | currency:'KRW'}}</p>
-      </div>
-      <div class="d-flex text-center">
-        <p class="card-text col-4">세금총액</p>
-        <p class="card-text col-8">{{standardTax + municipalEduTax + cityTax | currency:'KRW'}}</p>
-      </div>
+      <app-output [outputType]="'y-n'" [title]="'특례세율'" [description]="'공시지가 9억이하 1주택보유자에 적용되는 할인세율(2023년 까지 한시적 운영)'"
+        [isYes]="discountRate"></app-output>
+
+      <app-output [outputType]="'currency'" [title]="'과세표준'" [description]="'공시지가의 60%'"
+        [output]="standard"></app-output>
+
+      <app-output [outputType]="'currency'" [title]="'보유세 초과상한'" [description]="'시가변동에 의한 과중한 세부담을 방지하기 위한 세액상한선'"
+        [output]="maxLimit"></app-output>
+
+      <app-output [outputType]="'currency-with-rate'" [title]="'보유세'" [rate]="standardTaxRate"
+        [output]="standardTax"></app-output>
+
+      <app-output [outputType]="'currency'" [title]="'도시지역분 초과상한'" [output]="cityTaxMaxLimit"></app-output>
+
+      <app-output [outputType]="'currency'" [title]="'도시지역분'" [description]="'과세표준 * 0.0014'"
+        [output]="cityTax"></app-output>
+
+      <app-output [outputType]="'currency'" [title]="'지방교육세'" [description]="'재산세 (도시지역분 제외) * 20%'"
+        [output]="municipalEduTax"></app-output>
+
+      <app-output [outputType]="'currency'" [title]="'지역자원시설세'" [output]="fireTax"></app-output>
+
+      <app-output [outputType]="'세금총액'" [title]="'지역자원시설세'"
+        [output]="standardTax + municipalEduTax + cityTax"></app-output>
     </div>
   </div>
 </div>

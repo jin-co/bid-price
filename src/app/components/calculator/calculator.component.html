@@ -80,41 +80,35 @@
       <h5 class="card-title">입찰가</h5>
       <hr>
       <app-output [outputType]="'y-n'" [title]="'조정지역여부'" [isYes]="isRegulatedArea"></app-output>
-      
-      <app-output [outputType]="'y-n'" [title]="'중과세대상'" [isYes]="isWeightedTax" [description]="'중과세는 시가 1억을 초과하는 보유주택이 2이상인 경우 적용'"></app-output>     
-      
-      <app-output [outputType]="'currency-with-rate'" [title]="'취득세'" [rate]="acquisitionTaxRate" [output]="acquisitionTax">
-      </app-output>             
+
+      <app-output [outputType]="'y-n'" [title]="'중과세대상'" [isYes]="isWeightedTax"
+        [description]="'중과세는 시가 1억을 초과하는 보유주택이 2이상인 경우 적용'"></app-output>
+
+      <app-output [outputType]="'currency-with-rate'" [title]="'취득세'" [rate]="acquisitionTaxRate"
+        [output]="acquisitionTax">
+      </app-output>
 
       <app-output [outputType]="'currency'" [title]="'생애최초구매 감면'" [output]="firstBuyDiscount">
       </app-output>
 
-      <div class="d-flex text-center">
-        <p class="card-text col-4">지방교육세</p>
-        <p class="card-text col-4">세율: {{municipalEduTaxRate | percent:'1.0-2'}}</p>
-        <p class="card-text col-4">{{municipalEduTax | currency:'KRW'}}</p>
-      </div>
-      <div class="d-flex text-center">
-        <p class="card-text col-4">농어촌특별세</p>
-        <p class="card-text col-4">세율: {{ruralTaxRate | percent:'1.0-2'}}</p>
-        <p class="card-text col-4">{{ruralTax | currency:'KRW'}}</p>
-      </div>
-      <div class="d-flex text-center">
-        <p class="card-text col-4">세금합계</p>
-        <p class="card-text col-8">{{estimatedTaxTotal | currency:'KRW'}}</p>
-      </div>
-      <div class="d-flex text-center">
-        <p class="card-text col-4">입찰가</p>
-        <p class="card-text col-8">{{form.get('bid')?.value | currency:'KRW'}}</p>
-      </div>
-      <div class="d-flex text-center">
-        <p class="card-text col-4">인수금액</p>
-        <p class="card-text col-8">{{form.get('liability')?.value | currency:'KRW'}}</p>
-      </div>
-      <div class="d-flex text-center">
-        <p class="card-text col-4">예상비용</p>
-        <p class="card-text col-8">{{estimatedTotal | currency:'KRW'}}</p>
-      </div>
+      <app-output [outputType]="'currency-with-rate'" [title]="'지방교육세'" [rate]="municipalEduTaxRate"
+        [output]="municipalEduTax">
+      </app-output>
+
+      <app-output [outputType]="'currency-with-rate'" [title]="'농어촌특별세'" [rate]="ruralTaxRate" [output]="ruralTax">
+      </app-output>
+
+      <app-output [outputType]="'currency'" [title]="'세금합계'" [output]="estimatedTaxTotal">
+      </app-output>
+
+      <app-output [outputType]="'currency'" [title]="'입찰가'" [output]="form.get('bid')?.value">
+      </app-output>
+
+      <app-output [outputType]="'currency'" [title]="'인수금액'" [output]="form.get('liability')?.value">
+      </app-output>
+
+      <app-output [outputType]="'currency'" [title]="'예상비용'" [output]="estimatedTotal">
+      </app-output>
     </div>
   </div>
 </div>
