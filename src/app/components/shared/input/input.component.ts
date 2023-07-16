@@ -10,8 +10,9 @@ export class InputComponent implements ControlValueAccessor {
   @Input() label: string = '';
   @Input() type: string = 'text';
   @Input() title: string = '';
-  @Input() description: string = '';
   @Input() id: string = '';
+
+  @Input() value: boolean = false;
 
   constructor(@Self() public controlDir: NgControl) {
     this.controlDir.valueAccessor = this;
@@ -22,7 +23,7 @@ export class InputComponent implements ControlValueAccessor {
   registerOnTouched(fn: any): void {}
   setDisabledState?(isDisabled: boolean): void {}
 
-  get control(): FormControl {
+  get control(): FormControl {    
     return this.controlDir.control as FormControl;
   }
 }

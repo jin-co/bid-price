@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-calculator',
-  templateUrl: './calculator.component.html',
-  styleUrls: ['./calculator.component.css'],
+  selector: 'app-acquisition-tax',
+  templateUrl: './acquisition-tax.component.html',
+  styleUrls: ['./acquisition-tax.component.css']
 })
-export class CalculatorComponent implements OnInit {
+export class AcquisitionTaxComponent {
   acquisitionTaxRates: number[] = [0.01, 0.03];
   municipalEduTaxRates: number[] = [0.001, 0.004];
   ruralTaxRates: number[] = [0.002, 0.006, 0.01];
@@ -42,7 +42,7 @@ export class CalculatorComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    console.log(this.form.value.price)
+    console.log(this.form.value.firstBuy)
     this.isRegulatedArea = this.form.value.isRegulatedArea;
     this.calculateAcquisitionTax();
     this.calculateMunicipalEduTax();
