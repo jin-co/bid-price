@@ -42,7 +42,6 @@ export class AcquisitionTaxComponent {
   ngOnInit(): void {}
 
   onSubmit() {
-    console.log(this.form.value.firstBuy)
     this.isRegulatedArea = this.form.value.isRegulatedArea;
     this.calculateAcquisitionTax();
     this.calculateMunicipalEduTax();
@@ -53,11 +52,11 @@ export class AcquisitionTaxComponent {
       this.ruralTax -
       this.firstBuyDiscount;
     this.estimatedTotal =
-      this.form.value.bid +
+      +this.form.value.bid +
       this.acquisitionTax +
       this.municipalEduTax +
       this.ruralTax +
-      this.form.value.liability -
+      +this.form.value.liability -
       this.firstBuyDiscount;
   }
 
@@ -69,7 +68,7 @@ export class AcquisitionTaxComponent {
       } else {
         this.acquisitionTaxRate = this.acquisitionTaxRates[0];
       }
-      this.acquisitionTax = this.form.value.price * this.acquisitionTaxRate;
+      this.acquisitionTax = +this.form.value.price * this.acquisitionTaxRate;
       this.firstBuyDiscount = this.acquisitionTax / 2;
       this.isWeightedTax = false;
       return;
