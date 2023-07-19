@@ -4,32 +4,33 @@ import { FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-acquisition-tax',
   templateUrl: './acquisition-tax.component.html',
-  styleUrls: ['./acquisition-tax.component.css']
+  styleUrls: ['./acquisition-tax.component.css'],
 })
 export class AcquisitionTaxComponent {
+  acquisitionTax: number = 0;
+  acquisitionTaxRate: number = 0;
   acquisitionTaxRates: number[] = [0.01, 0.03];
+
+  municipalEduTax: number = 0;
+  municipalEduTaxRate: number = 0;
   municipalEduTaxRates: number[] = [0.001, 0.004];
+
+  ruralTax: number = 0;
+  ruralTaxRate: number = 0;
   ruralTaxRates: number[] = [0.002, 0.006, 0.01];
 
   isRegulatedArea: boolean = false;
   isWeightedTax: boolean = false;
-
-  acquisitionTaxRate: number = 0;
-  municipalEduTaxRate: number = 0;
-  ruralTaxRate: number = 0;
-  acquisitionTax: number = 0;
-  municipalEduTax: number = 0;
-  ruralTax: number = 0;
+  firstBuyDiscount: number = 0;
 
   estimatedTaxTotal: number = 0;
   estimatedTotal: number = 0;
-  firstBuyDiscount: number = 0;
-  test!: string;
   form!: FormGroup;
   constructor() {
     this.form = new FormGroup({
       firstBuy: new FormControl(false),
       isOver: new FormControl(false),
+      isFancyHouse: new FormControl(false),
       isRegulatedArea: new FormControl(false),
       price: new FormControl(null),
       bid: new FormControl(null),
@@ -78,6 +79,8 @@ export class AcquisitionTaxComponent {
     if (this.form.value.price <= 100000000) {
       this.isWeightedTax = false;
       this.acquisitionTaxRate = this.acquisitionTaxRates[0];
+    } else if (this.form.value.isFancyHouse) {
+      this.acquisitionTaxRate += 0.08;
     } else {
       //표준세율
       if (this.form.value.multiHomeOrCorporate <= 1) {

@@ -18,6 +18,24 @@
     </div>
 
     <div class="d-flex form-control my-3 align-items-center">
+      <label class="col-4" title="고급주택의 경우 8% 세율가산">고급주택 여부</label>
+      <div class="form-check col-4">
+        <input formControlName="isFancyHouse" type="radio" class="btn-check" id="fancy-yes" [value]="true"
+          name="isFancyHouse">
+        <label class="btn w-100 btn-outline-success" for="fancy-yes">
+          예
+        </label>
+      </div>
+      <div class="form-check col-4">
+        <input formControlName="isFancyHouse" type="radio" class="btn-check" id="fancy-no" [value]="false"
+          name="isFancyHouse">
+        <label class="btn w-100 btn-outline-danger" for="fancy-no">
+          아니오
+        </label>
+      </div>
+    </div>
+
+    <div class="d-flex form-control my-3 align-items-center">
       <label class="col-4" title="전용면적 84제곱미터 초과시 농어촌특별세 과세">전용면적 84m<sup>2</sup> 초과</label>
       <div class="form-check col-4">
         <input formControlName="isOver" type="radio" class="btn-check" id="over-yes" [value]="true" name="isOver">
